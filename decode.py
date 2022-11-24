@@ -8,6 +8,7 @@ Minutiae = namedtuple(
     ['type', 'x', 'y', 'orientation', 'quality', 'label'],
     defaults=[None, None])
 
+
 def load_iso19794(path, format):
     if format == '19794-2-2005':
         with open(path, 'rb') as f:
@@ -31,7 +32,8 @@ def load_iso19794(path, format):
             min_y = int.from_bytes(t[x+2: x+4], 'big')
             angle = 360 - t[x + 4]/256*360
             min_quality = t[x + 5]
-            minutiaes.append(Minutiae(min_type, min_x, min_y, angle, min_quality))
+            minutiaes.append(
+                Minutiae(min_type, min_x, min_y, angle, min_quality))
         return minutiaes
 
     if format == '19794-2-2011':
@@ -74,11 +76,18 @@ def load_iso19794(path, format):
             min_y = int.from_bytes(t[x+2: x+4], 'big')
             angle = 360 - t[x + 4]/256*360
             min_quality = t[x + 5]
-            minutiaes.append(Minutiae(min_type, min_x, min_y, angle, min_quality))
+            minutiaes.append(
+                Minutiae(min_type, min_x, min_y, angle, min_quality))
         return minutiaes
 
-minutiae_2005 = load_iso19794('iso2005template',format='19794-2-2005')
-print(minutiae_2005)
 
-minutiae_2011 = load_iso19794('iso2011template',format='19794-2-2011')
-print(minutiae_2011)
+def main():
+    minutiae_2005 = load_iso19794('iso2005template', format='19794-2-2005')
+    print(minutiae_2005)
+
+    minutiae_2011 = load_iso19794('iso2011template', format='19794-2-2011')
+    print(minutiae_2011)
+
+
+if __name__ == "__main__":
+    main()
