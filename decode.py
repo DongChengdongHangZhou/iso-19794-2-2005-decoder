@@ -77,8 +77,14 @@ def load_iso19794(path, format):
             minutiaes.append(Minutiae(min_type, min_x, min_y, angle, min_quality))
         return minutiaes
 
-minutiae_2005 = load_iso19794('iso2005template',format='19794-2-2005')
+
+def main():
+    minutiae_2005 = load_iso19794('iso2005template', format='19794-2-2005')
 print(minutiae_2005)
 
-minutiae_2011 = load_iso19794('iso2011template',format='19794-2-2011')
+    minutiae_2011 = load_iso19794('iso2011template', format='19794-2-2011')
 print(minutiae_2011)
+
+
+if __name__ == "__main__":
+    main()
